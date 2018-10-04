@@ -5,8 +5,8 @@ Use SQLAlchemy to convert between DB tables and python objects.
 ## location of sqlite file - default is /tmp/data.db, unless
 ## overridden by an env var
 
-db_location = "/tmp/data.db"
 import os
+db_location = os.path.join(os.path.dirname(__file__), "../data/data.db")
 
 if "AIrsenalDB" in os.environ.keys():
     db_location = os.environ["AIrsenalDB"]
