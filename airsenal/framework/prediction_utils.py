@@ -28,7 +28,8 @@ from .utils import (
     get_recent_minutes_for_player,
     get_return_gameweek_for_player,
     get_player_name,
-    list_players
+    list_players,
+    CURRENT_SEASON
 )
 from .bpl_interface import (
     get_player_model,
@@ -161,7 +162,9 @@ def get_predicted_points(
         points = 0.
         expected_points[gameweek] = points
         # points for fixture will be zero if suspended or injured
-        if not is_injured_or_suspended(player.player_id, gameweek, season, session):
+        if is_injured_or_suspended(player.player_id, gameweek, season, session):
+            points = 0.
+        else:
         # now loop over recent minutes and average
             points = sum(
                 [
@@ -183,8 +186,8 @@ def get_predicted_points(
                 ]
             ) / len(recent_minutes)
             # write the prediction for this fixture to the db
-            fill_prediction(player, fixture, points, tag, session)
-            expected_points[gameweek] += points
+        fill_prediction(player, fixture, points, tag, session)
+        expected_points[gameweek] += points
         # and return the per-gameweek predictions as a dict
         print("Expected points: {:.2f}".format(points))
 
@@ -222,7 +225,7 @@ def is_injured_or_suspended(player_id, gameweek, season, session):
     Query the API for 'chance of playing next round', and if this
     is <=50%, see if we can find a return date.
     """
-    if season != "1819": # no API info for past seasons
+    if season != CURRENT_SEASON: # no API info for past seasons
         return False
     ## check if a player is injured or suspended
     pdata = fetcher.get_player_summary_data()[player_id]
@@ -236,14 +239,6 @@ def is_injured_or_suspended(player_id, gameweek, season, session):
         if return_gameweek is None or return_gameweek > gameweek:
             return True
     return False
-
-
-
-
-
-
-
-
 
 
 def fill_ep(csv_filename):
