@@ -17,7 +17,7 @@ from .utils import *
 np.random.seed(42)
 
 
-def get_result_df(session):
+def get_result_df(session, min_date="2016-08-01"):
     """
     query the match table and put results into pandas dataframe,
     to train the team-level model.
@@ -34,7 +34,7 @@ def get_result_df(session):
     df_past["home_goals"] = df_past["home_goals"].astype(int)
     df_past["away_goals"] = df_past["away_goals"].astype(int)
     df_past["date"] = pd.to_datetime(df_past["date"])
-    df_past = df_past[df_past["date"] > "2016-08-01"]
+    df_past = df_past[df_past["date"] > min_date]
     return df_past
 
 

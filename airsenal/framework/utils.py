@@ -28,7 +28,7 @@ from sqlalchemy import and_, or_
 
 Base.metadata.bind = engine
 DBSession = sessionmaker()
-##session = DBSession()
+session = DBSession()
 
 fetcher = FPLDataFetcher()  # in global scope so it can keep cached data
 
@@ -457,6 +457,7 @@ def get_recent_minutes_for_player(player,
                   .filter_by(player_id=player.player_id)\
                   .filter(PlayerScore.fixture.has(Fixture.gameweek >= first_gw))\
                   .filter(PlayerScore.fixture.has(Fixture.gameweek < last_gw))\
+                  .order_by(PlayerScore.fixture.has(Fixture.date))\
                   .all()
     ## for speed, we use the fact that matches from this season
     ## are uploaded in order, so we can just take the last n

@@ -130,7 +130,7 @@ def get_defending_points(position, team, opponent, is_home, minutes, model_team)
 
 def get_predicted_points(
         player, model_team, df_player, season, tag, session,
-        fixtures_ahead=1, fixures_behind=3
+        fixtures_ahead=1, fixures_behind=3, gw_range=None
 ):
     """
     Use the team-level model to get the probs of scoring or conceding
@@ -143,10 +143,11 @@ def get_predicted_points(
     position = player.position(season)
     fixtures = get_fixtures_for_player(player,
                                        season,
-                                       dbsession=session)[0:fixtures_ahead]
+                                       dbsession=session,
+                                       gw_range=gw_range)[0:fixtures_ahead]
     expected_points = defaultdict(float)  # default value is 0.0
 
-    for fid in fixtures:
+    for i, fid in enumerate(fixtures):
         fixture = session.query(Fixture)\
                          .filter_by(season=season)\
                          .filter_by(fixture_id=fid).first()
@@ -155,7 +156,7 @@ def get_predicted_points(
         opponent = fixture.away_team if is_home else fixture.home_team
         print("gameweek: {} vs {} home? {}".format(gameweek, opponent, is_home))
         recent_minutes = get_recent_minutes_for_player(
-            player, num_match_to_use=fixures_behind, season=season, dbsession=session
+            player, num_match_to_use=fixures_behind, season=season, dbsession=session, last_gw=fixture.gameweek
         )
         points = 0.
         expected_points[gameweek] = points
