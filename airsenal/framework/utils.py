@@ -88,19 +88,20 @@ def get_team_value(team=None, gameweek=None, season=None):
     else:
         players = [p.player_id for p in team.players]
     for pid in players:
-        if season==CURRENT_SEASON:
-            if gameweek:
-                total_value += fetcher.get_gameweek_data_for_player(pid,
-                                                                    gameweek)[0][
-                                                                        "value"
-                                                                    ]
-            else:
-                total_value += fetcher.get_player_summary_data()[pid]["now_cost"]
-        else:
-            player = session.query(Player).filter_by(season=season)\
-                                          .filter_by(player_id=pid)\
-                                          .first()
-            total_value += player.cost
+        total_value += get_sell_price_for_player(pid, gameweek)
+#        if season==CURRENT_SEASON:
+#            if gameweek:
+#                total_value += fetcher.get_gameweek_data_for_player(pid,
+#                                                                    gameweek)[0][
+#                                                                        "value"
+#                                                                    ]
+#            else:
+#                total_value += fetcher.get_player_summary_data()[pid]["now_cost"]
+#        else:
+#            player = session.query(Player).filter_by(season=season)\
+#                                          .filter_by(player_id=pid)\
+#                                          .first()
+#            total_value += player.cost
     return total_value
 
 

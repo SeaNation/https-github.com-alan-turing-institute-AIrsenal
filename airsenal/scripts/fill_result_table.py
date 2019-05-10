@@ -25,6 +25,9 @@ def _find_fixture(season,home_team,away_team,session):
                .filter_by(home_team=home_team)\
                .filter_by(away_team=away_team)\
                .first()
+    if not f:
+        print("Unable to find fixture {} vs {} in season {}".format(
+            home_team, away_team, season))
     return f
 
 
