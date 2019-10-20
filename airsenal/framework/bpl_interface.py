@@ -49,7 +49,7 @@ def get_ratings_df(session):
     return df
 
 
-def create_and_fit_team_model(df, df_X, teams=CURRENT_TEAMS):
+def create_and_fit_team_model(df, df_X, teams=CURRENT_TEAMS, verbose=True):
     """
     Get the team-level stan model, which can give probabilities of
     each potential scoreline in a given fixture.
@@ -64,10 +64,12 @@ def create_and_fit_team_model(df, df_X, teams=CURRENT_TEAMS):
                 strvals = df_X.loc[(df_X["team"]==team),["att","mid","defn","ovr"]].values
                 intvals = [int(v) for v in strvals[0]]
                 model_team.add_new_team(team, intvals)
-                print("Adding new team {} with covariates".format(team))
+                if verbose:
+                    print("Adding new team {} with covariates".format(team))
             except:
                 model_team.add_new_team(team)
-                print("Adding new team {} without covariates".format(team))
+                if verbose:
+                    print("Adding new team {} without covariates".format(team))
 
     return model_team
 
