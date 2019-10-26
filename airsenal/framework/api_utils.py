@@ -136,7 +136,7 @@ def remove_session_player(player_id, session_id, dbsession=DBSESSION):
     """
     Remove row from SessionTeam table.
     """
-    pids = get_session_players(session_id, dbsession)
+    pids = [p['id'] for p in get_session_players(session_id, dbsession)]
     player_id = int(player_id)
     if player_id not in pids: # player not there
         return False
