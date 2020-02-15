@@ -38,6 +38,15 @@ def get_session_id():
         return "DEFAULT_SESSION_ID"
 
 
+def get_session_team_model():
+    """
+    Get the team-level model from bpl_interface, and cache it
+    """
+    if not "model" in session.keys():
+        session["model"] = get_team_model()
+    return session["model"]
+
+
 ## Use a flask blueprint rather than creating the app directly
 ## so that we can also make a test app
 
@@ -80,6 +89,7 @@ def set_session_key():
     """
     key = str(uuid4())
     session['key'] = key
+    print("Setting session key {}".format(key))
     return create_response(key)
 
 
@@ -179,6 +189,24 @@ def session_budget():
         return create_response("OK")
     else:
         return create_response(get_session_budget(get_session_id()))
+
+
+@blueprint.route("/fixtures", methods=["GET"])
+def get_fixtures():
+    """
+    Get fixtures for the next gameweek
+    """
+    return create_response(get_fixtures_for_next_gameweek())
+
+
+@blueprint.route("/fixture/prediction/<home>/<away>", methods=["GET"])
+def get_fixture_prediction(home, away):
+    """
+    Get prediction for fixture to be home win, away win, draw
+    """
+    predictions = get_predictions_for_fixture(get_session_team_model(),
+                                              home, away)
+    return create_response(predictions)
 
 
 ###########################################
