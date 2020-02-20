@@ -17,6 +17,39 @@ from .player import CandidatePlayer
 positions = ["FWD", "MID", "DEF", "GK"]  # front-to-back
 
 
+def calc_points_hit(num_transfers, free_transfers):
+    """
+    Current rules say we lose 4 points for every transfer beyond
+    the number of free transfers we have.
+    Num transfers can be an integer, or "W" or "F" (wildcard or
+    free hit).
+    """
+    if num_transfers == "W" or num_transfers == "F":
+        return 0
+    elif isinstance(num_transfers, int):
+        return max(0, 4*(num_transfers - free_transfers))
+    else:
+        raise RuntimeError("Unexpected argument for num_transfers {}"\
+                           .format(num_transfers))
+
+
+def calc_free_transfers(num_transfers, prev_free_transfers):
+    """
+    We get one extra free transfer per week, unless we use a wildcard or
+    free hit, but we can't have more than 2.  So we should only be able
+    to return 1 or 2.
+    """
+    if num_transfers == "W" or num_transfers == "F":
+        return 1
+    elif isinstance(num_transfers, int):
+        return max(
+            1,
+            min(2, 1+prev_free_transfers - num_transfers)
+        )
+    else:
+        raise RuntimeError("Unexpected argument for num_transfers {}"\
+                           .format(num_transfers))
+
 def generate_transfer_strategies(gw_ahead, free_transfers=1, max_total_hit=None,
                                  allow_wildcard=False, allow_free_hit=False):
     """
@@ -123,8 +156,11 @@ def get_baseline_prediction(gw_ahead, tag):
     return total, cum_total_per_gw
 
 
-def make_optimum_transfer(team, tag, gameweek_range=None, season=CURRENT_SEASON,
-                          update_func_and_args=None):
+def make_optimum_single_transfer(team,
+                                 tag,
+                                 gameweek_range=None,
+                                 season=CURRENT_SEASON,
+                                 update_func_and_args=None):
     """
     If we want to just make one transfer, it's not unfeasible to try all
     possibilities in turn.
@@ -135,7 +171,7 @@ def make_optimum_transfer(team, tag, gameweek_range=None, season=CURRENT_SEASON,
     """
     if not gameweek_range:
         gameweek_range = [get_next_gameweek()]
-    best_score = 0.
+    best_score = -1.
     best_pid_out, best_pid_in = 0, 0
     ordered_player_lists = {}
     for pos in ["GK", "DEF", "MID", "FWD"]:
@@ -407,6 +443,43 @@ def make_new_team(budget, num_iterations, tag,
         print(best_team)
         print(best_score)
     return best_team
+
+
+def make_best_transfers(num_transfers, team, tag, gameweeks, season):
+    """
+    Return a new team and a dictionary {"in": [player_ids],
+                                        "out":[player_ids]}
+    """
+    transfer_dict = {}
+    if num_transfers == 0:
+        transfer_dict = {"in":[], "out": []}
+    elif num_transfers == 1:
+        team, players_out, players_in = make_optimum_single_transfer(
+            team,
+            tag,
+            gameweeks,
+            season)
+#            update_func_and_args)
+        transfer_dict = {"in": players_in,
+                         "out": players_out}
+    elif num_transfers == 2:
+        team, players_out, players_in = make_optimum_double_transfer(
+            team,
+            tag,
+            gameweeks,
+            season)
+        transfer_dict = {"in": players_in,
+                         "out": players_out}
+
+    elif num_transfers == "W":
+        #IMPLEMENT_ME
+        pass
+    elif num_transfers == "F":
+        #IMPLEMENT_ME
+        pass
+    points = team.get_expected_points(gameweeks[0], tag)
+
+    return team, transfer_dict, points
 
 
 def apply_strategy(strat, tag,
