@@ -16,20 +16,40 @@ representing 0, 1, 2 transfers for the next gameweek.
 """
 
 import os
+import shutil
 import sys
 import time
-
+import random
 
 import json
 
 
-from multiprocessing import Process, Queue
+from multiprocessing import Process
 from tqdm import tqdm
 import argparse
 
-from ..framework.optimization_utils import *
+from ..framework.multiprocessing_utils import CustomQueue
+from ..framework.optimization_utils import (
+    get_starting_team,
+    calc_free_transfers,
+    calc_points_hit,
+    fill_suggestion_table,
+    make_best_transfers
+)
 
-OUTPUT_DIR = "/tmp/airsopt"
+from ..framework.utils import (
+    CURRENT_SEASON,
+    get_player_name,
+    get_latest_prediction_tag
+)
+
+if os.name == "posix":
+    TMPDIR = "/tmp/"
+else:
+    TMPDIR = "%TMP%"
+
+OUTPUT_DIR = os.path.join(TMPDIR, "airsopt")
+
 
 def count_increments(strategy_string, num_iterations):
     """
@@ -52,14 +72,111 @@ def count_increments(strategy_string, num_iterations):
     return max(total,1)
 
 
-def optimize(queue, pid):
+def get_best_transfers(team, num_transfers, gameweek, season, pred_tag):
+    # dummy function for now
+    time.sleep(3)
+    print("Getting best {} transfers".format(num_transfers))
+    points = random.randint(40,50)
+    dummy_transfer_dict = {"in":[],"out":[]}
+    for i in range(num_transfers):
+        dummy_transfer_dict["in"].append(random.randint(0,200))
+        dummy_transfer_dict["out"].append(random.randint(0,200))
+    return team, dummy_transfer_dict, points
+
+
+def optimize(queue, pid, gameweek_range, season, pred_tag):
     """
-    Take the parameters it needs from the queue.
+    Queue is the multiprocessing queue,
+    pid is the Process that will execute this func,
+    gameweeks will be a list of gameweeks to consider,
+    season and prediction_tag are hopefully self-explanatory.
+
+    The rest of the parameters needed for prediction are from the queue.
+
+    Things on the queue will either be "FINISHED", or a tuple:
+    (
+     num_transfers,
+     free_transfers,
+     current_team,
+     strat_dict,
+     strat_id
+    )
     """
     while True:
         status = queue.get()
         if status == "FINISHED":
-            break
+            time.sleep(5)
+            if queue.qsize() > 0:
+                continue
+            else:
+                break
+
+        # now assume we have set of parameters to do an optimization
+        # from the queue.
+
+        num_transfers, free_transfers, team, strat_dict, sid = status
+
+        # sid (status id) is just a string e.g. "002" representing how many
+        # transfers to be made in each gameweek.
+        # Only exception is the root node, where sid is "STARTING" - this
+        # node only exists to add children to the queue.
+
+        if sid == "STARTING":
+            sid = ""
+            depth = 0
+            strat_dict["total_score"] = 0
+            strat_dict["points_per_gw"] = {}
+            strat_dict["players_in"] = {}
+            strat_dict["players_out"] = {}
+            strat_dict["cards_played"] = {}
+        else:
+            sid = sid + str(num_transfers)
+            print("Process {} doing strategy {}".format(pid, sid))
+
+            # work out what gameweek we're in and how far down the tree we are.
+            depth = len(strat_dict["points_per_gw"])
+
+            # gameweeks from this point in strategy to end of window
+            gameweeks = gameweek_range[depth:]
+            # next gameweek:
+            gw = gameweeks[0]
+            if num_transfers > 0:
+                team, transfers, points = make_best_transfers(num_transfers,
+                                                             team,
+                                                             pred_tag,
+                                                             gameweeks,
+                                                             season)
+
+                points += calc_points_hit(num_transfers, free_transfers)
+                strat_dict["players_in"][gw] = transfers["in"]
+                strat_dict["players_out"][gw] = transfers["out"]
+            else:
+                # no transfers
+                strat_dict["players_in"][gw] = []
+                strat_dict["players_out"][gw] = []
+                strat_dict["cards_played"][gw] = []
+                points = team.get_expected_points(gw, pred_tag)
+
+            free_transfers = calc_free_transfers(num_transfers, free_transfers)
+            strat_dict["total_score"] += points
+            strat_dict["points_per_gw"][gw] = points
+
+            depth += 1
+        if depth >= len(gameweek_range):
+            print("Process {} Finished {}: {}".format(pid,
+                                                      sid,
+                                                      strat_dict["total_score"]))
+            with open(
+                    os.path.join(OUTPUT_DIR,
+                                 "strategy_{}_{}.json".format(pred_tag, sid)),
+                    "w") as outfile:
+                json.dump(strat_dict, outfile)
+            # add something to the queue to allow process to finish.
+            queue.put("FINISHED")
+        else:
+            # add children to the queue
+            for num_transfers in range(3):
+                queue.put((num_transfers, free_transfers, team, strat_dict, sid))
 
 
 
@@ -99,7 +216,13 @@ def process_strat(queue, pid, num_iterations, tag,
         ## call the function to update the main progress bar
         updater()
 
+
 def find_best_strat_from_json(tag):
+    """
+    Look through all the files in our tmp directory that
+    contain the prediction tag in their filename.
+    Load the json, and find the strategy with the best 'total_score'.
+    """
     best_score = 0
     best_strat = None
     file_list = os.listdir(OUTPUT_DIR)
@@ -113,8 +236,27 @@ def find_best_strat_from_json(tag):
                 best_score = strat["total_score"]
                 best_strat = strat
         ## cleanup
-        os.remove(full_filename)
+#        os.remove(full_filename)
     return best_strat
+
+
+def find_baseline_score_from_json(tag, num_gameweeks):
+    """
+    The baseline score is the one where we make 0 transfers
+    for all gameweeks.
+    """
+    zeros = "0"*num_gameweeks
+    filename = os.path.join(OUTPUT_DIR, "strategy_{}_{}.json"\
+                            .format(tag, zeros))
+    if not os.path.exists(filename):
+        print("Couldn't find {}".format(filename))
+        return 0.
+    else:
+        with open(filename) as inputfile:
+            strat = json.load(inputfile)
+            score = strat["total_score"]
+            return score
+
 
 
 def print_strat(strat):
@@ -129,7 +271,7 @@ def print_strat(strat):
     print(" ===============================================")
     for gw in gameweeks_as_int:
         print("\n =========== Gameweek {} ================\n".format(gw))
-        print("Cards played:  {}\n".format(strat['cards_played'][str(gw)]))
+       # print("Cards played:  {}\n".format(strat['cards_played'][str(gw)]))
         print("Players in:\t\t\tPlayers out:")
         print("-----------\t\t\t------------")
         for i in range(len(strat['players_in'][str(gw)])):
@@ -162,90 +304,46 @@ def print_team_for_next_gw(strat):
     print(t)
 
 
-def get_args():
-    parser = argparse.ArgumentParser(
-        description="Try some different transfer strategies"
-    )
-    parser.add_argument(
-        "--weeks_ahead", help="how many weeks ahead", type=int, default=3
-    )
-    parser.add_argument("--tag", help="specify a string identifying prediction set")
-    parser.add_argument(
-        "--num_iterations", help="how many trials to run", type=int, default=100
-    )
-    parser.add_argument("--allow_wildcard",
-                        help="include possibility of wildcarding in one of the weeks",
-                        action="store_true")
-    parser.add_argument("--allow_free_hit",
-                        help="include possibility of playing free hit in one of the weeks",
-                        action="store_true")
-    parser.add_argument("--max_points_hit",
-                        help="how many points are we prepared to lose on transfers",
-                        type=int, default=4)
-    parser.add_argument("--num_free_transfers",
-                        help="how many free transfers do we have",
-                        type=int, default=1)
-    parser.add_argument("--bank",
-                        help="how much money do we have in the bank (multiplied by 10)?",
-                        type=int, default=0)
-    parser.add_argument("--num_thread",
-                        help="how many threads to use",
-                        type=int, default=4)
-    parser.add_argument("--season",
-                        help="what season, in format e.g. '1819'",
-                        type=int, default=CURRENT_SEASON)
-    args = parser.parse_args()
-    return args
 
-def main():
-
-    args = get_args()
-    season = args.season
-    num_weeks_ahead = args.weeks_ahead
-    num_iterations = args.num_iterations
-    if args.allow_wildcard:
-        wildcard = True
-    else:
-        wildcard = False
-    if args.allow_free_hit:
-        free_hit = True
-    else:
-        free_hit = False
-    num_free_transfers = args.num_free_transfers
-    budget =  args.bank
-    max_points_hit = args.max_points_hit
-    if args.tag:
-        tag = args.tag
-    else:
-        ## get most recent set of predictions from DB table
-        tag = get_latest_prediction_tag()
-
+def run_optimization(gameweeks,
+                     tag,
+                     season=CURRENT_SEASON,
+                     wildcard=False,
+                     free_hit=False,
+                     num_free_transfers=1,
+                     bank=0,
+                     max_points_hit=4,
+                     num_thread=4):
+    """
+    This is the actual main function that sets up the multiprocessing
+    and calls the optimize function for every num_transfers/gameweek
+    combination, to find the best strategy.
+    """
     ## create the output directory for temporary json files
     ## giving the points prediction for each strategy
+    shutil.rmtree(OUTPUT_DIR, ignore_errors=True)
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    if len(os.listdir(OUTPUT_DIR)) > 0:
-        os.system("rm "+OUTPUT_DIR+"/*")
-
     ## first get a baseline prediction
-    baseline_score, baseline_dict = get_baseline_prediction(num_weeks_ahead, tag)
+    #baseline_score, baseline_dict = get_baseline_prediction(num_weeks_ahead, tag)
 
     ## create a queue that we will add strategies to, and some processes to take
     ## things off it
-    squeue = Queue()
+    squeue = CustomQueue()
     procs = []
     ## create one progress bar for each thread
     progress_bars = []
-    for i in range(args.num_thread):
+    for i in range(num_thread):
         progress_bars.append(tqdm(total=100))
 
-    ## number of nodes in tree will be 3^num_weeks_ahead unless we allow
-    ## wildcard or free hit, in which case it'll be 4^num_weeks_ahead
+    ## number of nodes in tree will be 3^num_weeks unless we allow
+    ## wildcard or free hit, in which case it'll be 4^num_weeks
+    num_weeks = len(gameweeks)
     if not (wildcard or free_hit):
-        total_nodes = pow(3, num_weeks_ahead)
+        total_nodes = pow(3, num_weeks)
     elif (wildcard and free_hit):
-        total_nodes = pow(5,num_weeks_ahead)
+        total_nodes = pow(5,num_weeks)
     else:
-        total_nodes = pow(4,num_weeks_ahead)
+        total_nodes = pow(4,num_weeks)
     total_progress = tqdm(total=total_nodes, desc="Total progress")
 
 
@@ -284,21 +382,31 @@ def main():
     ## total_score
     ## num_free_transfers
     ## budget
-    for i in range(args.num_thread):
+    for i in range(num_thread):
         processor = Process(
-            target=process_strat,
-            args=(squeue, i, num_iterations, tag,
-                  baseline_dict, update_progress, reset_progress, budget),
+            target=optimize,
+            args=(squeue, i, gameweeks, season, tag)
+#                  baseline_dict, update_progress, reset_progress, budget),
+#        )
+        #processor = Process(
+         #   target=process_strat,
+         #   args=(squeue, i, num_iterations, tag,
+         #         baseline_dict, update_progress, reset_progress, budget),
         )
         processor.daemon = True
         processor.start()
         procs.append(processor)
 
+    ## add starting node to the queue
+   #         num_transfers, current_team, transfer_dict, total, depth
+    starting_team = get_starting_team()
+    squeue.put((0,0,starting_team, {}, "STARTING"))
+
     ## add the strategies to the queue
-    for strat in strategies:
-        squeue.put(strat)
-    for i in range(args.num_thread):
-        squeue.put("DONE")
+    #for strat in strategies:
+    #    squeue.put(strat)
+    #for i in range(args.num_thread):
+    #    squeue.put("DONE")
     ### now rejoin the main thread
     for i,p in enumerate(procs):
         progress_bars[i].close()
@@ -308,6 +416,7 @@ def main():
     ### find the best from all the strategies tried
     best_strategy = find_best_strat_from_json(tag)
 
+    baseline_score = find_baseline_score_from_json(tag, num_weeks)
     fill_suggestion_table(baseline_score, best_strategy, season)
     for i in range(len(procs)):
         print("\n")
@@ -316,3 +425,102 @@ def main():
     print("Best score: {}".format(best_strategy["total_score"]))
     print_strat(best_strategy)
     print_team_for_next_gw(best_strategy)
+
+
+def sanity_check_args(args):
+    """
+    Check that command-line arguments are self-consistent.
+    """
+    if args.num_weeks_ahead and (args.gw_start or args.gw_end):
+        raise RuntimeError("Please only specify num_weeks_ahead OR gw_start/end")
+    elif (args.gw_start and not args.gw_end) or \
+         (args.gw_end and not args.gw_start):
+        raise RuntimeError("Need to specify both gw_start and gw_end")
+    return True
+
+
+def get_args():
+    """
+    Use argparse to process command-line arguments.
+    """
+    parser = argparse.ArgumentParser(
+        description="Try some different transfer strategies"
+    )
+    parser.add_argument(
+        "--weeks_ahead", help="how many weeks ahead", type=int
+    )
+    parser.add_argument(
+        "--gw_start", help="first gameweek to consider", type=int
+    )
+    parser.add_argument(
+        "--gw_end", help="last gameweek to consider", type=int
+    )
+    parser.add_argument("--tag", help="specify a string identifying prediction set")
+    parser.add_argument(
+        "--num_iterations", help="how many trials to run", type=int, default=100
+    )
+    parser.add_argument("--allow_wildcard",
+                        help="include possibility of wildcarding in one of the weeks",
+                        action="store_true")
+    parser.add_argument("--allow_free_hit",
+                        help="include possibility of playing free hit in one of the weeks",
+                        action="store_true")
+    parser.add_argument("--max_points_hit",
+                        help="how many points are we prepared to lose on transfers",
+                        type=int, default=4)
+    parser.add_argument("--num_free_transfers",
+                        help="how many free transfers do we have",
+                        type=int, default=1)
+    parser.add_argument("--bank",
+                        help="how much money do we have in the bank (multiplied by 10)?",
+                        type=int, default=0)
+    parser.add_argument("--num_thread",
+                        help="how many threads to use",
+                        type=int, default=4)
+    parser.add_argument("--season",
+                        help="what season, in format e.g. '1819'",
+                        type=int, default=CURRENT_SEASON)
+    args = parser.parse_args()
+    return args
+
+
+def main():
+    """
+    The main function, to be used as entrypoint.
+    """
+
+    args = get_args()
+    args_ok = sanity_check_args(args)
+    season = args.season
+    if args.weeks_ahead:
+        gameweeks = list(range(get_next_gameweek(),
+                               get_next_gameweek()+args.weeks_ahead))
+    else:
+        gameweeks = list(range(args.gw_start, args.gw_end))
+    num_iterations = args.num_iterations
+    if args.allow_wildcard:
+        wildcard = True
+    else:
+        wildcard = False
+    if args.allow_free_hit:
+        free_hit = True
+    else:
+        free_hit = False
+    num_free_transfers = args.num_free_transfers
+    bank = args.bank
+    max_points_hit = args.max_points_hit
+    if args.tag:
+        tag = args.tag
+    else:
+        ## get most recent set of predictions from DB table
+        tag = get_latest_prediction_tag()
+    num_thread = args.num_thread
+    run_optimization(gameweeks,
+                     tag,
+                     season,
+                     wildcard,
+                     free_hit,
+                     num_free_transfers,
+                     bank,
+                     max_points_hit,
+                     num_thread)
