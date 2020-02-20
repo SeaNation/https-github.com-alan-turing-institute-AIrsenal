@@ -8,7 +8,14 @@ from operator import itemgetter
 
 #from ..utils import get_predicted_points
 
-from ..framework.optimization_utils import Team, make_optimum_transfer, make_optimum_double_transfer, get_predicted_points
+from ..framework.optimization_utils import (
+    Team,
+    make_optimum_transfer,
+    make_optimum_double_transfer,
+    get_predicted_points,
+    calc_points_hit,
+    calc_free_transfers
+)
 
 
 
@@ -85,6 +92,36 @@ def predicted_point_mock_generator(point_dict):
         output_list = [(DummyPlayer(entry[0],position,{gameweek:entry[1]}),entry[1]) for entry in output_pid_list]
         return output_list
     return mock_get_predicted_points
+
+
+def test_points_hit():
+    """
+    We should lose 4 points per non-free transfer.
+    First argument to calc_points_hit is num_transfers,
+    second is num_free_transfers.
+    """
+    assert(calc_points_hit(1,1)==0)
+    assert(calc_points_hit(2,1)==4)
+    assert(calc_points_hit(3,1)==8)
+    assert(calc_points_hit(1,2)==0)
+    assert(calc_points_hit(0,1)==0)
+    assert(calc_points_hit("W",1)==0)
+    assert(calc_points_hit("F",1)==0)
+
+
+def test_free_transfers():
+    """
+    Number of free transfers should be 1 or 2.
+    First argument is num_transfers this week, second is
+    how many free transfers we had at the start of the week.
+    """
+    assert(calc_free_transfers(1,1)==1)
+    assert(calc_free_transfers(1,2)==2)
+    assert(calc_free_transfers(0,2)==2)
+    assert(calc_free_transfers(2,1)==1)
+    assert(calc_free_transfers(3,1)==1)
+    assert(calc_free_transfers("W",1)==1)
+    assert(calc_free_transfers("F",1)==1)
 
 
 
