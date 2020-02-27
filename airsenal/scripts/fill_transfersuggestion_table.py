@@ -15,9 +15,7 @@ import os
 import sys
 import time
 
-
 import json
-
 
 from multiprocessing import Process, Queue
 from tqdm import tqdm

@@ -84,6 +84,24 @@ def get_best_transfers(team, num_transfers, gameweek, season, pred_tag):
     return team, dummy_transfer_dict, points
 
 
+def is_finished(num_gameweeks, wildcard=False, free_hit=False):
+    """
+    We expected pow(3,num_gameweeks) json files in the output dir.
+    Return True if they are all there, False otherwise.
+    """
+    possibilities_per_gameweek = 3
+    if wildcard:
+        possibilities_per_gameweek += 1
+    if free_hit:
+        possibilities_per_gameweek += 1
+    num_expected = pow(possibilities_per_gameweek, num_gameweeks)
+    # count the json files in the output dir
+    json_count = len(os.listdir(OUTPUT_DIR))
+    if json_count == num_expected:
+        return True
+    return False
+
+
 def optimize(queue, pid, gameweek_range, season, pred_tag):
     """
     Queue is the multiprocessing queue,
@@ -103,13 +121,16 @@ def optimize(queue, pid, gameweek_range, season, pred_tag):
     )
     """
     while True:
-        status = queue.get()
-        if status == "FINISHED":
-            time.sleep(5)
-            if queue.qsize() > 0:
-                continue
-            else:
+        if queue.qsize() > 0:
+            print("PID {} - {} items on queue".format(queue.qsize(), pid))
+            status = queue.get()
+        else:
+            if is_finished(len(gameweek_range)):
+                print("All jobs done: process {} exiting.".format(pid))
                 break
+            else:
+                time.sleep(5)
+                continue
 
         # now assume we have set of parameters to do an optimization
         # from the queue.
@@ -171,8 +192,7 @@ def optimize(queue, pid, gameweek_range, season, pred_tag):
                                  "strategy_{}_{}.json".format(pred_tag, sid)),
                     "w") as outfile:
                 json.dump(strat_dict, outfile)
-            # add something to the queue to allow process to finish.
-            queue.put("FINISHED")
+
         else:
             # add children to the queue
             for num_transfers in range(3):

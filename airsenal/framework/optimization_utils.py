@@ -526,7 +526,7 @@ def apply_strategy(strat, tag,
         if strat[0][gw] == 0:  # no transfers that gameweek
             rp, ap = [], []  ## lists of removed-players, added-players
         elif strat[0][gw] == 1:  # one transfer - choose optimum
-            new_team, rp, ap = make_optimum_transfer(
+            new_team, rp, ap = make_optimum_single_transfer(
                 new_team,
                 tag,
                 gw_range,
