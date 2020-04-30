@@ -72,9 +72,12 @@ def count_increments(strategy_string, num_iterations):
     return max(total,1)
 
 
-def get_best_transfers(team, num_transfers, gameweek, season, pred_tag):
+def get_best_transfers(team, num_transfers, gameweek, season, pred_tag,
+                       updater, resetter):
     # dummy function for now
-    time.sleep(3)
+    for i in range(50):
+        time.sleep(0.1)
+        updater.
     print("Getting best {} transfers".format(num_transfers))
     points = random.randint(40,50)
     dummy_transfer_dict = {"in":[],"out":[]}
