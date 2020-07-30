@@ -1,0 +1,101 @@
+id,name,full_name,season,team_id
+1,ARS,Arsenal,1920,1
+2,AVL,Aston Villa,1920,2
+3,BOU,Bournemouth,1920,3
+4,BHA,Brighton and Hove Albion,1920,4
+5,BUR,Burnley,1920,5
+6,CHE,Chelsea,1920,6
+7,CRY,Crystal Palace,1920,7
+8,EVE,Everton,1920,8
+9,LEI,Leicester City,1920,9
+10,LIV,Liverpool,1920,10
+11,MCI,Manchester City,1920,11
+12,MUN,Manchester United,1920,12
+13,NEW,Newcastle United,1920,13
+14,NOR,Norwich City,1920,14
+15,SHU,Sheffield United,1920,15
+16,SOU,Southampton,1920,16
+17,TOT,Tottenham Hotspur,1920,17
+18,WAT,Watford,1920,18
+19,WHU,West Ham United,1920,19
+20,WOL,Wolves,1920,20
+21,ARS,Arsenal,1819,1
+22,BOU,Bournemouth,1819,2
+23,BHA,Brighton and Hove Albion,1819,3
+24,BUR,Burnley,1819,4
+25,CAR,Cardiff,1819,5
+26,CHE,Chelsea,1819,6
+27,CRY,Crystal Palace,1819,7
+28,EVE,Everton,1819,8
+29,FUL,Fulham,1819,9
+30,HUD,Huddersfield Town,1819,10
+31,LEI,Leicester City,1819,11
+32,LIV,Liverpool,1819,12
+33,MCI,Manchester City,1819,13
+34,MUN,Manchester United,1819,14
+35,NEW,Newcastle United,1819,15
+36,SOU,Southampton,1819,16
+37,TOT,Tottenham Hotspur,1819,17
+38,WAT,Watford,1819,18
+39,WHU,West Ham United,1819,19
+40,WOL,Wolves,1819,20
+41,ARS,Arsenal,1718,1
+42,BOU,Bournemouth,1718,2
+43,BHA,Brighton and Hove Albion,1718,3
+44,BUR,Burnley,1718,4
+45,CHE,Chelsea,1718,5
+46,CRY,Crystal Palace,1718,6
+47,EVE,Everton,1718,7
+48,HUD,Huddersfield Town,1718,8
+49,LEI,Leicester City,1718,9
+50,LIV,Liverpool,1718,10
+51,MCI,Manchester City,1718,11
+52,MUN,Manchester United,1718,12
+53,NEW,Newcastle United,1718,13
+54,SOU,Southampton,1718,14
+55,STK,Stoke City,1718,15
+56,SWA,Swansea City,1718,16
+57,TOT,Tottenham Hotspur,1718,17
+58,WAT,Watford,1718,18
+59,WBA,West Bromwich Albion,1718,19
+60,WHU,West Ham United,1718,20
+61,ARS,Arsenal,1617,1
+62,BOU,Bournemouth,1617,2
+63,BUR,Burnley,1617,3
+64,CHE,Chelsea,1617,4
+65,CRY,Crystal Palace,1617,5
+66,EVE,Everton,1617,6
+67,HUL,Hull City,1617,7
+68,LEI,Leicester City,1617,8
+69,LIV,Liverpool,1617,9
+70,MCI,Manchester City,1617,10
+71,MUN,Manchester United,1617,11
+72,MID,Middlesbrough,1617,12
+73,SOU,Southampton,1617,13
+74,STK,Stoke City,1617,14
+75,SUN,Sunderland,1617,15
+76,SWA,Swansea City,1617,16
+77,TOT,Tottenham Hotspur,1617,17
+78,WAT,Watford,1617,18
+79,WBA,West Bromwich Albion,1617,19
+80,WHU,West Ham United,1617,20
+81,ARS,Arsenal,1516,1
+82,AVL,Aston Villa,1516,2
+83,BOU,Bournemouth,1516,3
+84,CHE,Chelsea,1516,4
+85,CRY,Crystal Palace,1516,5
+86,EVE,Everton,1516,6
+87,LEI,Leicester City,1516,7
+88,LIV,Liverpool,1516,8
+89,MCI,Manchester City,1516,9
+90,MUN,Manchester United,1516,10
+91,NEW,Newcastle United,1516,11
+92,NOR,Norwich City,1516,12
+93,SOU,Southampton,1516,13
+94,STK,Stoke City,1516,14
+95,SUN,Sunderland,1516,15
+96,SWA,Swansea City,1516,16
+97,TOT,Tottenham Hotspur,1516,17
+98,WAT,Watford,1516,18
+99,WBA,West Bromwich Albion,1516,19
+100,WHU,West Ham United,1516,20

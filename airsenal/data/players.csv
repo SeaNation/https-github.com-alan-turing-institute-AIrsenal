@@ -1,0 +1,1305 @@
+player_id,name
+1,Shkodran Mustafi
+2,Héctor Bellerín
+3,Sead Kolasinac
+4,Ainsley Maitland-Niles
+5,Sokratis Papastathopoulos
+6,Nacho Monreal
+7,Laurent Koscielny
+8,Konstantinos Mavropanos
+9,Carl Jenkinson
+10,Rob Holding
+11,Pierre-Emerick Aubameyang
+12,Alexandre Lacazette
+13,Edward Nketiah
+14,Bernd Leno
+15,Mesut Özil
+16,Henrikh Mkhitaryan
+17,Alex Iwobi
+18,Granit Xhaka
+19,Lucas Torreira
+20,Mohamed Elneny
+21,Matteo Guendouzi
+22,Ahmed El Mohamady
+23,James Chester
+24,Neil Taylor
+25,Kortney Hause
+26,Jonathan Kodjia
+27,Ørjan Nyland
+28,Conor Hourihane
+29,Jack Grealish
+30,Anwar El Ghazi
+31,John McGinn
+32,Andre Green
+33,Birkir Bjarnason
+34,Keinan Davis
+35,Henri Lansbury
+36,José Ignacio Peleteiro Romallo
+37,Shane Duffy
+38,Martín Montoya
+39,Bernardo Fernandes da Silva Junior
+40,Leon Balogun
+41,Gaëtan Bong
+42,Lewis Dunk
+43,Matthew Clarke
+44,Glenn Murray
+45,Jürgen Locadia
+46,Florin Andone
+47,Mathew Ryan
+48,David Button
+49,Pascal Groß
+50,Alireza Jahanbakhsh
+51,José Heriberto Izquierdo Mena
+52,Anthony Knockaert
+53,Yves Bissouma
+54,Davy Pröpper
+55,Solomon March
+56,Beram Kayal
+57,Dale Stephens
+58,Steve Cook
+59,Nathan Aké
+60,Charlie Daniels
+61,Chris Mepham
+62,Simon Francis
+63,Adam Smith
+64,Lloyd Kelly
+65,Diego Rico
+66,Jack Simpson
+67,Callum Wilson
+68,Joshua King
+69,Dominic Solanke
+70,Lys Mousset
+71,Sam Surridge
+72,Asmir Begovic
+73,Artur Boruc
+74,Mark Travers
+75,Ryan Fraser
+76,David Brooks
+77,Junior Stanislas
+78,Jordon Ibe
+79,Lewis Cook
+80,Andrew Surman
+81,Dan Gosling
+82,Jefferson Lerma
+83,Ben Mee
+84,James Tarkowski
+85,Matthew Lowton
+86,Phil Bardsley
+87,Charlie Taylor
+88,Kevin Long
+89,Ben Gibson
+90,Ashley Barnes
+91,Chris Wood
+92,Matej Vydra
+93,Nick Pope
+94,Tom Heaton
+95,Joe Hart
+96,Johann Berg Gudmundsson
+97,Dwight McNeil
+98,Robbie Brady
+99,Steven Defour
+100,Jeff Hendrick
+101,Ashley Westwood
+102,Jack Cork
+103,Marcos Alonso
+104,Antonio Rüdiger
+105,César Azpilicueta
+106,David Luiz Moreira Marinho
+107,Emerson Palmieri dos Santos
+108,Andreas Christensen
+109,Davide Zappacosta
+110,Olivier Giroud
+111,Kepa Arrizabalaga
+112,Willy Caballero
+113,Willian Borges Da Silva
+114,Pedro Rodríguez Ledesma
+115,Ruben Loftus-Cheek
+116,Callum Hudson-Odoi
+117,Ross Barkley
+118,Jorge Luiz Frello Filho
+119,N'Golo Kanté
+120,Daniel Drinkwater
+121,Ethan Ampadu
+122,Aaron Wan-Bissaka
+123,Patrick van Aanholt
+124,James Tomkins
+125,Mamadou Sakho
+126,Joel Ward
+127,Scott Dann
+128,Martin Kelly
+129,Christian Benteke
+130,Connor Wickham
+131,Vicente Guaita
+132,Wayne Hennessey
+133,Wilfried Zaha
+134,Luka Milivojevic
+135,Andros Townsend
+136,Max Meyer
+137,Jeffrey Schlupp
+138,James McArthur
+139,Cheikhou Kouyaté
+140,Luke Dreher
+141,Lucas Digne
+142,Yerry Mina
+143,Michael Keane
+144,Seamus Coleman
+145,Leighton Baines
+146,Cenk Tosun
+147,Dominic Calvert-Lewin
+148,Jordan Pickford
+149,Maarten Stekelenburg
+150,Richarlison de Andrade
+151,Gylfi Sigurdsson
+152,Bernard Anício Caldeira Duarte
+153,Theo Walcott
+154,Tom Davies
+155,Ademola Lookman
+156,Idrissa Gueye
+157,James McCarthy
+158,Morgan Schneiderlin
+159,Ricardo Domingos Barbosa Pereira
+160,Harry Maguire
+161,Benjamin Chilwell
+162,Jonny Evans
+163,Christian Fuchs
+164,Çaglar Söyüncü
+165,Wes Morgan
+166,Jamie Vardy
+167,Kelechi Iheanacho
+168,Kasper Schmeichel
+169,Eldin Jakupovic
+170,Danny Ward
+171,James Maddison
+172,Harvey Barnes
+173,Rachid Ghezzal
+174,Marc Albrighton
+175,Demarai Gray
+176,Wilfred Ndidi
+177,Matty James
+178,Daniel Amartey
+179,Nampalys Mendy
+180,Hamza Choudhury
+181,Andrew Robertson
+182,Trent Alexander-Arnold
+183,Virgil van Dijk
+184,Joseph Gomez
+185,Joel Matip
+186,Dejan Lovren
+187,Roberto Firmino
+188,Divock Origi
+189,Alisson Ramses Becker
+190,Simon Mignolet
+191,Mohamed Salah
+192,Sadio Mané
+193,Alex Oxlade-Chamberlain
+194,Xherdan Shaqiri
+195,Adam Lallana
+196,Naby Keita
+197,Fabio Henrique Tavares
+198,Jordan Henderson
+199,Georginio Wijnaldum
+200,James Milner
+201,Rafael Camacho
+202,Aymeric Laporte
+203,Kyle Walker
+204,Benjamin Mendy
+205,Fabian Delph
+206,Oleksandr Zinchenko
+207,John Stones
+208,Nicolás Otamendi
+209,Danilo Luiz da Silva
+210,Sergio Agüero
+211,Gabriel Fernando de Jesus
+212,Ederson Santana de Moraes
+213,Claudio Bravo
+214,Raheem Sterling
+215,Kevin De Bruyne
+216,Leroy Sané
+217,Riyad Mahrez
+218,Bernardo Mota Veiga de Carvalho e Silva
+219,David Silva
+220,Phil Foden
+221,Fernando Luiz Rosa
+222,Ilkay Gündogan
+223,Chris Smalling
+224,Ashley Young
+225,Victor Lindelöf
+226,Luke Shaw
+227,Marcos Rojo
+228,Eric Bailly
+229,José Diogo Dalot Teixeira
+230,Matteo Darmian
+231,Phil Jones
+232,Romelu Lukaku
+233,Marcus Rashford
+234,Mason Greenwood
+235,David de Gea
+236,Sergio Romero
+237,Lee Grant
+238,Paul Pogba
+239,Anthony Martial
+240,Alexis Sánchez
+241,Jesse Lingard
+242,Juan Mata
+243,Daniel James
+244,Frederico Rodrigues de Paula Santos
+245,Angel Gomes
+246,Andreas Pereira
+247,Nemanja Matic
+248,Scott McTominay
+249,Tahith Chong
+250,James Garner
+251,Matt Ritchie
+252,Fabian Schär
+253,DeAndre Yedlin
+254,Federico Fernández
+255,Paul Dummett
+256,Javier Manquillo
+257,Florian Lejeune
+258,Jamaal Lascelles
+259,Ciaran Clark
+260,Yoshinori Muto
+261,Jose Luis Mato Sanmartín
+262,Martin Dubravka
+263,Karl Darlow
+264,Frederick Woodman
+265,Ayoze Pérez
+266,Miguel Almirón
+267,Christian Atsu
+268,Sung-yueng Ki
+269,Jonjo Shelvey
+270,Sean Longstaff
+271,Isaac Hayden
+272,Timm Klose
+273,Ben Godfrey
+274,Maximillian Aarons
+275,Christoph Zimmermann
+276,Jamal Lewis
+277,Grant Hanley
+278,Teemu Pukki
+279,Dennis Srbeny
+280,Tim Krul
+281,Michael McGovern
+282,Mario Vrancic
+283,Emiliano Buendía
+284,Onel Hernández
+285,Marco Stiepermann
+286,Kenny McLean
+287,Todd Cantwell
+288,Moritz Leitner
+289,Alexander Tettey
+290,Tom Trybull
+291,Enda Stevens
+292,Kieron Freeman
+293,Jack O'Connell
+294,George Baldock
+295,John Egan
+296,Richard Stearman
+297,John Lundstram
+298,Billy Sharp
+299,Jake Eastwood
+300,Mark Duffy
+301,John Fleck
+302,Oliver Norwood
+303,David McGoldrick
+304,Jannik Vestergaard
+305,Ryan Bertrand
+306,Yan Valery
+307,Jan Bednarek
+308,Jack Stephens
+309,Matt Targett
+310,Maya Yoshida
+311,Kayne Ramsay
+312,Charlie Austin
+313,Danny Ings
+314,Michael Obafemi
+315,Shane Long
+316,Sam Gallagher
+317,Fraser Forster
+318,Alex McCarthy
+319,Angus Gunn
+320,Nathan Redmond
+321,James Ward-Prowse
+322,Mohamed Elyounoussi
+323,Stuart Armstrong
+324,Mario Lemina
+325,Pierre-Emile Højbjerg
+326,Tyreke Johnson
+327,Callum Slattery
+328,Oriol Romeu Vidal
+329,Ben Davies
+330,Jan Vertonghen
+331,Toby Alderweireld
+332,Danny Rose
+333,Davinson Sánchez
+334,Kieran Trippier
+335,Juan Foyth
+336,Serge Aurier
+337,Kyle Walker-Peters
+338,Harry Kane
+339,Vincent Janssen
+340,Hugo Lloris
+341,Paulo Gazzaniga
+342,Heung-Min Son
+343,Christian Eriksen
+344,Bamidele Alli
+345,Lucas Rodrigues Moura da Silva
+346,Erik Lamela
+347,Harry Winks
+348,Victor Wanyama
+349,Moussa Sissoko
+350,Eric Dier
+351,Luke Amos
+352,Oliver Skipp
+353,José Holebas
+354,Christian Kabasele
+355,Adam Masina
+356,Adrian Mariappa
+357,Francisco Femenía Far
+358,Craig Cathcart
+359,Daryl Janmaat
+360,Marc Navarro
+361,Sebastian Prödl
+362,Troy Deeney
+363,Gerard Deulofeu
+364,Andre Gray
+365,Isaac Success Ajayi
+366,Ben Foster
+367,Pontus Dahlberg
+368,Abdoulaye Doucouré
+369,Roberto Pereyra
+370,Will Hughes
+371,Tom Cleverley
+372,Ken Sema
+373,Etienne Capoue
+374,Nathaniel Chalobah
+375,Domingos Quina
+376,Aaron Cresswell
+377,Angelo Ogbonna
+378,Arthur Masuaku
+379,Pablo Zabaleta
+380,Ryan Fredericks
+381,Issa Diop
+382,Fabián Balbuena
+383,Winston Reid
+384,Ben Johnson
+385,Marko Arnautovic
+386,Javier Hernández Balcázar
+387,Alexandre Nascimento Costa Silva
+388,Lukasz Fabianski
+389,Michail Antonio
+390,Felipe Anderson Pereira Gomes
+391,Manuel Lanzini
+392,Andriy Yarmolenko
+393,Robert Snodgrass
+394,Jack Wilshere
+395,Declan Rice
+396,Mark Noble
+397,Carlos Sánchez
+398,Grady Diangana
+399,Pablo Fornals
+400,Pedro Obiang
+401,Matt Doherty
+402,Jonathan Castro Otto
+403,Conor Coady
+404,Ryan Bennett
+405,Willy Boly
+406,Rúben Gonçalo Silva Nascimento Vinagre
+407,Romain Saïss
+408,Max Kilman
+409,Raúl Jiménez
+410,Diogo Jota
+411,Rui Pedro dos Santos Patrício
+412,John Ruddy
+413,Will Norris
+414,Rúben Diogo da Silva Neves
+415,João Filipe Iria Santos Moutinho
+416,Morgan Gibbs-White
+417,Adama Traoré
+418,Hélder Costa
+419,Ivan Cavaleiro
+420,Leander Dendoncker
+421,Leandro Trossard
+422,André Filipe Tavares Gomes
+423,Chris Basham
+427,Emiliano Martínez
+428,Wesley Moraes
+429,Jed Steer
+430,Aaron Lennon
+431,Christian Pulisic
+432,Mateo Kovacic
+433,James Justin
+434,Josip Drmic
+435,Patrick Roberts
+436,Simon Moore
+437,Che Adams
+438,Moussa Djenepo
+439,Craig Dawson
+440,José Ángel Esmorís Tasende
+441,Luke Freeman
+442,Tanguy Ndombele
+443,Rodrigo Hernandez
+444,Phil Jagielka
+445,Tyrone Mings
+446,Jack Stacey
+447,Erik Pieters
+448,Youri Tielemans
+449,Ralf Fahrmann
+450,Roberto Jimenez Gago
+451,Jay Rodriguez
+452,Ezri Konsa Ngoyo
+453,Callum Robinson
+454,Sam Byram
+455,Bjorn Engels
+456,Ravel Morrison
+457,Sébastien Haller
+458,Frédéric Guilbert
+459,Kurt Zouma
+460,Tammy Abraham
+461,Michy Batshuayi
+462,Robert Kenedy Nunes do Nascimento
+463,Mason Mount
+464,Rhian Brewster
+465,Mahmoud Ahmed Ibrahim Hassan
+466,Joelinton Cássio Apolinário de Lira
+467,Calum Chambers
+468,Jordan Ayew
+469,Daniel Ceballos Fernández
+470,Douglas Luiz Soares de Paulo
+471,Dean Henderson
+472,Ben Osborn
+473,Jesús Vallejo Lázaro
+474,Lovre Kalinic
+475,Dan Burn
+476,Philip Billing
+477,Lewis Gibson
+478,Mason Holgate
+479,Jonas Lössl
+480,Andy King
+481,Axel Tuanzebe
+482,Jack Colback
+483,Jacob Murphy
+484,Philip Heise
+485,Wesley Hoedt
+486,Cédric Soares
+487,Patrick Cutrone
+488,Nicolas Pépé
+489,Reiss Nelson
+490,Joseph Willock
+491,Marvelous Nakamba
+492,Arnaut Danjuma Groeneveld
+493,Adam Webster
+494,Aaron Ramsdale
+495,Bailey Peacock-Farrell
+496,Moise Kean
+497,Jean-Philippe Gbamin
+498,Jetro Willems
+499,Rolando Aarons
+500,Allan Saint-Maximin
+501,Oliver McBurnie
+502,Neal Maupay
+503,Gary Cahill
+504,Gabriel Teodoro Martinelli Silva
+505,Harry Wilson
+506,Reece James
+507,Ibrahim Amadou
+508,Sofiane Boufal
+509,Troy Parrott
+510,Víctor Camarasa
+511,Djibril Sidibé
+512,Danny Welbeck
+513,Heurelho da Silva Gomes
+514,Albian Ajeti
+515,Kieran Tierney
+516,Aaron Mooy
+517,Dennis Praet
+518,João Pedro Cavaco Cancelo
+519,Emil Krafth
+520,Andy Carroll
+521,Michael Verrips
+522,Muhamed Bešić
+523,Giovani Lo Celso
+524,Ryan Sessegnon
+525,Ismaïla Sarr
+526,Adrián San Miguel del Castillo
+527,Georges-Kévin Nkoudou
+528,Pedro Lomba Neto
+529,Fikayo Tomori
+530,Andy Lonergan
+531,Caoimhin Kelleher
+532,Kevin Danso
+533,Billy Gilmour
+534,Aaron Connolly
+535,Daniel N'Lundulu
+536,Tudor Baluta
+537,Steven Alzate
+538,Adam Idah
+539,Jairo Riedewald
+540,Matthew Longstaff
+541,Bukayo Saka
+542,Dimitri Foulquier
+543,Alfie Whiteman
+544,Eric Garcia
+545,Addji Keaninkin Marc-Israel Guehi
+546,Ezequiel Schelotto
+547,Leon Clarke
+548,Harry Lewis
+549,Brandon Williams
+550,Harvey Elliott
+551,Archie Mair
+552,Akin Famewo
+553,David Martin
+554,Dwight Gayle
+555,Michel Vorm
+556,Stephen Henderson
+557,Beni Baningime
+558,Brandon Austin
+559,Bernard Ashley-Seal
+560,Taylor Perry
+561,Anthony Gordon
+562,Scott Carson
+563,Ayotomiwa Dele-Bashiru
+564,Christian Saydee
+565,Gavin Kilkenny
+566,Owen Otasowie
+567,Luke Cundle
+568,Nathan Holland
+569,Curtis Jones
+570,Oumar Niasse
+571,Mace Goodridge
+572,Anthony Driscoll-Glennon
+573,Robert Elliot
+574,Mihai-Alexandru Dobre
+575,Neco Williams
+576,Emile Smith Rowe
+577,Rhu-endly Martina
+578,Sam Woods
+579,Tyrick Mitchell
+580,Brandon Pierrick
+581,James Daly
+582,Joseph Anang
+583,Japhet Tanganga
+584,William Smallbone
+585,Tyreece John-Jules
+586,Tariq Lamptey
+587,Oskar Buur
+588,Nya Kirby
+589,Nathaniel Phillips
+590,Takumi Minamino
+591,Jack Rodwell
+592,João Pedro Junqueira de Jesus
+593,Jeremy Ngakia
+594,Gonçalo Bento Soares Cardoso
+595,Bernardo Costa Da Rosa
+596,Abd-Al-Ali Morakinyo Olaposi Koiki
+597,Filip Benkovic
+598,Thomas Allan
+599,Kelland Watts
+600,Indiana Vassilev
+601,Ondrej Duda
+602,Lukas Rupp
+603,José Reina
+604,Ignacio Pussetto
+605,Gedson Carvalho Fernandes
+606,Darren Randolph
+607,Ryan Giles
+608,Giovanni McGregor
+609,Bruno André Cavaco Jordao
+610,Liam Gibson
+611,Jack Robinson
+612,Nabil Bentaleb
+613,Mbwana Samatta
+614,Valentino Lazaro
+615,Steven Bergwijn
+616,Tomas Soucek
+617,Pablo Marí
+618,Bruno Miguel Borges Fernandes
+619,Daniel Castelo Podence
+620,Josh Brownhill
+621,Sander Berge
+622,Richairo Zivkovic
+623,Borja González Tomás
+624,Odion Ighalo
+625,Panagiotis Retsos
+626,Jarrod Bowen
+627,Alexis Mac Allister
+628,Ki-Jana Hoever
+629,João Manuel Neves Virgínia
+630,Faustino Anjorin
+631,Armando Broja
+632,Josh Martin
+633,Nathan Tella
+634,Harvey White
+635,Nikola Tavares
+636,Zech Medley
+637,Jarrad Branthwaite
+638,Jimmy Dunne
+639,Bobby Thomas
+640,Max Thompson
+641,Lukas Jensen
+642,Taylor Harwood-Bellis
+643,Cole Palmer
+644,Tommy Doyle
+645,Jake Vokins
+646,Matt Macey
+647,Matthew Smith
+648,Adalberto Peñaranda
+649,Alexandre Jankewitz
+650,Jordan Thomas
+651,Alfie Lewis
+652,Leonardo Campana
+653,Josh Benson
+654,Will Ferry
+655,Dennis Cirkin
+656,Jack Young
+657,Lewis Bate
+658,Timothy Fosu-Mensah
+659,Kaine Hayden
+660,Luke Thomas
+661,George Hirst
+662,Darnell Johnson
+663,Jacob Maddox
+664,Conor Coventry
+665,Joel Mumbongo
+666,Alex Cochrane
+667,Ellis Simms
+668,John-Kymani Gordon
+669,Daniel Adshead
+670,Petr Cech
+671,Stephan Lichtsteiner
+672,Aaron Ramsey
+673,Emile Smith-Rowe
+674,Denis Suárez
+675,Marc Pugh
+676,Emerson Hyndman
+677,Jermain Defoe
+678,Nathaniel Clyne
+679,Kyle Taylor
+680,Nnamdi Ofoborh
+681,Matt Butcher
+682,Bruno Saltor Grau
+683,Markus Suttner
+684,Tomer Hemed
+685,Sam Baldock
+686,Jason Steele
+687,Viktor Gyokeres
+688,Ben White
+689,Max Sanders
+690,Jayson Molumby
+691,Stephen Ward
+692,Jonathan Walters
+693,Sam Vokes
+694,Nahki Wells
+695,Anders Lindegaard
+696,Peter Crouch
+697,Harry Arter
+698,Neil Etheridge
+699,Alex Smithies
+700,Sean Morrison
+701,Sol Bamba
+702,Bruno Ecuele Manga
+703,Matthew Connolly
+704,Joe Bennett
+705,Lee Peltier
+706,Ashley Darel Jazz Richards
+707,Greg Halford
+708,Joe Ralls
+709,David Junior Hoilett
+710,Nathaniel Mendez-Laing
+711,Callum Paterson
+712,Aron Gunnarsson
+713,Anthony Pilkington
+714,Loïc Damour
+715,Josh Murphy
+716,Kenneth Zohore
+717,Omar Bogle
+718,Gary Madine
+719,Bobby Reid
+720,Greg Cunninghamm
+721,Kadeem Harris
+722,Brian Murphy
+723,Rhys Healey
+724,Leandro Bacuna
+725,Thibaut Courtois
+726,Victor Moses
+727,Eden Hazard
+728,Cesc Fàbregas
+729,Tiemoué Bakayoko
+730,Álvaro Morata
+731,Gonzalo Higuaín
+732,Julian Speroni
+733,Bakary Sako
+734,Alexander Sørloth
+735,Jaroslaw Jach
+736,Pape Souaré
+737,Sullay Kaikai
+738,Joe Tupper
+739,Lucas Perri
+740,Ashley Williams
+741,Jonjoe Kenny
+742,Cuco Martina
+743,Yannick Bolasie
+744,Davy Klaassen
+745,Nikola Vlasic
+746,Kevin Mirallas
+747,Sandro Ramírez
+748,Kieran Dowell
+749,Tyias Browning
+750,Marcus Bettinelli
+751,Tim Ream
+752,Denis Odoi
+753,Tom Cairney
+754,Kevin McDonald
+755,Stefan Johansen
+756,Floyd Ayité
+757,Neeskens Kebano
+758,Rui Pedro da Rocha Fonte
+759,Aboubakar Kamara
+760,Maxime Le Marchand
+761,Jean Michael Seri
+762,Cyrus Christie
+763,Fabricio Agosto Ramírez
+764,André Schürrle
+765,Aleksandar Mitrovic
+766,Alfie Mawson
+767,Sergio Rico
+768,Joe Bryan
+769,André-Frank Zambo Anguissa
+770,Luciano Vietto
+771,Ibrahima Cissé
+772,Zeze Steven Sessegnon
+773,Ryan Babel
+774,Håvard Nordtveit
+775,Lazar Markovic
+776,Luca De La Torre
+777,Jason Puncheon
+778,Ben Hamer
+779,Christopher Schindler
+780,Chris Löwe
+781,Tommy Smith
+782,Mathias Jorgensen
+783,Scott Malone
+784,Florent Hadergjonaj
+785,Terence Kongolo
+786,Rajiv van La Parra
+787,Jonathan Hogg
+788,Tom Ince
+789,Danny Williams
+790,Abdelhamid Sabiri
+791,Alex Pritchard
+792,Ramadan Sobhi
+793,Juninho Bacuna
+794,Collin Quaner
+795,Laurent Depoitre
+796,Steve Mounie
+797,Elias Kachunga
+798,Erik Durm
+799,Adama Diakhaby
+800,Isaac Mbenza
+801,Jon Gorenc Stankovic
+802,Ryan Schofield
+803,Karlan Grant
+804,Joel Coleman
+805,Demeaco Duhaney
+806,Matthew Daly
+807,Aaron Rowe
+808,Danny Simpson
+809,Yohan Benalouane
+810,Vicente Iborra
+811,Adrien Sebastian Perruchet Silva
+812,Fousseni Diabaté
+813,Shinji Okazaki
+814,Josh Knight
+815,Loris Karius
+816,Alberto Moreno
+817,Ragnar Klavan
+818,Daniel Sturridge
+819,Vincent Kompany
+820,Brahim Diaz
+821,Arijanet Muric
+822,Philippe Sandler
+823,Antonio Valencia
+824,Daley Blind
+825,Marouane Fellaini
+826,Ander Herrera
+827,Chancel Mbemba
+828,Mohamed Diamé
+829,Mikel Merino
+830,Salomón Rondón
+831,Jamie Sterry
+832,Callum Roberts
+833,Antonio Barreca
+834,Lewis Cass
+835,Sam McQueen
+836,Steven Davis
+837,Joshua Sims
+838,Manolo Gabbiadini
+839,Guido Carrillo
+840,Alfie Jones
+841,Mousa Dembélé
+842,Fernando Llorente
+843,Timothy Eyoma
+844,Kazaiah Sterling
+845,George Marsh
+846,Heurelho Gomes
+847,Younes Kaboul
+848,Miguel Britos
+849,Marvin Zeegelaar
+850,Stefano Okaka
+851,Jerome Sinclair
+852,Ben Wilmot
+853,Reece Oxford
+854,Edimilson Fernandes
+855,Jordan Hugill
+856,Lucas Pérez
+857,Joe Powell
+858,Samir Nasri
+859,Barry Douglas
+860,Danny Batth
+861,Roderick Jefferson Gonçalves Miranda
+862,Bright Enobakhare
+863,Bonatini Lohner Maia Bonatini
+864,Rafa Mir
+865,Ryan John Giles
+866,Cameron John
+867,David Ospina
+868,Damian Emiliano Martinez
+869,Per Mertesacker
+870,Gabriel Armando de Abreu
+871,Santiago Cazorla
+872,Francis Coquelin
+873,Mathieu Debuchy
+874,Jordi Osei-Tutu
+875,Adam Federici
+876,Bradley Smith
+877,Max Gradel
+878,Benik Afobe
+879,Connor Mahoney
+880,Niki Mäenpää
+881,Uwe Hünemeier
+882,Liam Rosenior
+883,Connor Goldson
+884,Steve Sidwell
+885,Jiri Skalak
+886,Jamie Murphy
+887,Leonardo Ulloa
+888,Isaiah Brown
+889,Paul Robinson
+890,Scott Arfield
+891,Dean Marney
+892,Adam Legzdins
+893,Fredrik Ulvestad
+894,Aiden O'Neill
+895,Eduardo dos Reis Carvalho
+896,Diego Da Silva Costa
+897,Kasey Palmer
+898,Charly Musonda
+899,Kyle Scott
+900,Jeremie Boga
+901,Dujon Sterling
+902,Trevoh Chalobah
+903,Damien Delaney
+904,Chung-yong Lee
+905,Yohan Cabaye
+906,Jason Lokilo
+907,Olayinka Fredrick Oladotun Ladapo
+908,Keshi Anderson
+909,Levi Lumeka
+910,Jordon Mutch
+911,Dion Henry
+912,Erdal Rakip
+913,Diego Cavalieri
+914,Joel Robles
+915,Matthew Pennington
+916,Ramiro Funes Mori
+917,Muhamed Besic
+918,Wayne Rooney
+919,Eliaquim Mangala
+920,Luke Garbutt
+921,Michael Hefele
+922,Martin Cranie
+923,Mark Hudson
+924,Joe Lolley
+925,Jack Payne
+926,Dean Whitehead
+927,Harry Bunn
+928,Sean Scannell
+929,Robert Green
+930,Robert Huth
+931,Ahmed Musa
+932,Aleksandar Dragovic
+933,George Thomas
+934,Sam Hughes
+935,Layton Ndukwu
+936,Leiva Lucas
+937,Philippe Coutinho
+938,Emre Can
+939,Oluwaseyi Ojo
+940,Marko Grujic
+941,Ben Woodburn
+942,Jon Flanagan
+943,Conor Masterson
+944,Aleksandar Kolarov
+945,Gnegneri Yaya Touré
+946,Fernando Francisco Reges
+947,Manuel Agudo Durán
+948,Oluwatosin Adarabioyo
+949,Lukas Nmecha
+950,Joel Dinis Castro Pereira
+951,Michael Carrick
+952,Zlatan Ibrahimovic
+953,Islam Slimani
+954,Jesús Gámez Duarte
+955,Yoan Gouffran
+956,Daryl Murphy
+957,Massadio Haidara
+958,Siem de Jong
+959,Henri Saivet
+960,Freddie Woodman
+961,Jérémy Pied
+962,Dusan Tadic
+963,Jordy Clasie
+964,Stuart Taylor
+965,Jack Butland
+966,Ryan Shawcross
+967,Geoff Cameron
+968,Marc Muniesa
+969,Glen Johnson
+970,Josh Tymon
+971,Joe Allen
+972,Charlie Adam
+973,Glenn Whelan
+974,Ibrahim Afellay
+975,Giannelli Imbula
+976,Bojan Krkic Perez
+977,Darren Fletcher
+978,Mame Biram Diouf
+979,Saido Berahino
+980,Kevin Wimmer
+981,Eric Maxim Choupo-Moting
+982,Jesé Rodríguez Ruiz
+983,Bruno Martins Indi
+984,Harry Souttar
+985,Thomas Edwards
+986,Julien Ngoy
+987,Jakob Haugaard
+988,Stephen Ireland
+989,Moritz Bauer
+990,Konstantinos Stafylidis
+991,Papa Alioune Ndiaye
+992,Tyrese Campbell
+993,Lasse Sorenson
+994,Kristoffer Nordfeldt
+995,Kyle Naughton
+996,Angel Rangel
+997,Stephen Kingsley
+998,Mike van der Hoorn
+999,Martin Olsson
+1000,Wayne Routledge
+1001,Leon Britton
+1002,Jay Fulton
+1003,Jefferson Montero
+1004,Leroy Fer
+1005,Nathan Dyer
+1006,Tom Carroll
+1007,Modou Barrow
+1008,Luciano Narsingh
+1009,Roque Mesa
+1010,André Ayew
+1011,Kyle Bartley
+1012,Sam Clucas
+1013,Renato Sanches
+1014,Wilfried Bony
+1015,Joe Rodon
+1016,Erwin Mulder
+1017,Connor Roberts
+1018,Cameron Carter-Vickers
+1019,Tashan Oakley-Boothe
+1020,Molla Wagué
+1021,Costel Pantilimon
+1022,Brandon Mason
+1023,Valon Behrami
+1024,Steven Berghuis
+1025,Nordin Amrabat
+1026,Isaac Success
+1027,Mauro Zárate
+1028,Ben Watson
+1029,André Carrillo
+1030,Orestis Karnezis
+1031,Michael Folivi
+1032,Daniel Bachmann
+1033,Carl Stewart
+1034,Dodi Lukebakio
+1035,Didier Ndong
+1036,Joy Mukena
+1037,Kieran Gibbs
+1038,Gareth Barry
+1039,Boaz Myhill
+1040,Allan-Roméo Nyom
+1041,Gareth McAuley
+1042,Jake Livermore
+1043,Nacer Chadli
+1044,James Morrison
+1045,Claudio Yacob
+1046,James McClean
+1047,Jonathan Leko
+1048,Matt Phillips
+1049,Sam Field
+1050,Chris Brunt
+1051,Hal Robson-Kanu
+1052,Ahmed El-Sayed Hegazi
+1053,Rekeem Harper
+1054,Kane Wilson
+1055,Oliver Burke
+1056,Grzegorz Krychowiak
+1057,Alex Palmer
+1058,Max Melbourne
+1059,Rayhaan Tulloch
+1060,Nathan Ferguson
+1061,Ali Gabr
+1062,Kyle Jameson
+1063,Jose Fonte
+1064,James Collins
+1065,Sofiane Feghouli
+1066,Diafra Sakho
+1067,Ashley Fletcher
+1068,Enner Valencia
+1069,Sead Haksabanovic
+1070,Antonio Martinez Lopez
+1071,Nathan Trott
+1072,Moses Makasi
+1073,Reece Burke
+1074,Josh Cullen
+1075,João Mário Naval Costa Eduardo
+1076,Patrice Evra
+1077,Marcus Browne
+1078,Josh Pask
+1079,Abdul Rahman Baba
+1080,Abel Hernández
+1081,Adam Clayton
+1082,Adam Forshaw
+1083,Adam Matthews
+1084,Adam Reach
+1085,Adama Diomande
+1086,Adlène Guédioura
+1087,Adnan Januzaj
+1088,Ahmed Elmohamady
+1089,Albert Adomah
+1090,Aleix García Serrano
+1091,Alex Baptiste
+1092,Alex Bruce
+1093,Alex Pike
+1094,Alexander Manninger
+1095,Alfred N'Diaye
+1096,Allan McGregor
+1097,Almen Abdi
+1098,Andrea Ranocchia
+1099,Andrew Eleftheriou
+1100,Antonio Barragán
+1101,Arouna Koné
+1102,Bacary Sagna
+1103,Bafétimbi Gomis
+1104,Baily Cargill
+1105,Bartosz Kapustka
+1106,Bastian Schweinsteiger
+1107,Ben Hinchcliffe
+1108,Ben Wynter
+1109,Bernardo Espinosa Zúñiga
+1110,Bertrand Traore
+1111,Billy Jones
+1112,Bojan Krkic
+1113,Borja Bastón
+1114,Bradley Guzan
+1115,Branislav Ivanovic
+1116,Brendan Galloway
+1117,Brian Lenihan
+1118,Brice Dja Djédjé
+1119,Bryan Oviedo
+1120,Callum McManaman
+1121,Cameron Borthwick-Jackson
+1122,Cameron Brannagan
+1123,Carlos De Pena
+1124,Charlie Rowan
+1125,Chris Long
+1126,Chuba Akpom
+1127,Clinton N'Jie
+1128,Connor Randall
+1129,Craig Gardner
+1130,Cristhian Stuani
+1131,Cristian Gamboa
+1132,Curtis Davies
+1133,Dael Fry
+1134,Daniel Agyei
+1135,Daniel Ayala
+1136,Daniel Batty
+1137,Daniel Kemp
+1138,Daniel Lafferty
+1139,Darron Gibson
+1140,David Jones
+1141,David Marshall
+1142,David Meyler
+1143,David Nugent
+1144,Demetri Mitchell
+1145,Dieumerci Mbokani
+1146,Dimitri Payet
+1147,Dimitrios Konstantopoulos
+1148,Dion Pereira
+1149,Dionatan do Nascimento Teixeira
+1150,Donald Love
+1151,Duncan Watmore
+1152,Dusan Kuciak
+1153,Eduardo Dos Reis Carvalho
+1154,Elliot Embleton
+1155,Elliott Moore
+1156,Emilio Nsue Lopez
+1157,Ethan Robson
+1158,Eunan O'Kane
+1159,Evandro Goebel
+1160,Ezekiel Fryers
+1161,Fabio Borini
+1162,Fabio Pereira da Silva
+1163,Filip Lesniak
+1164,Florin Gardos
+1165,Fraizer Campbell
+1166,Franck Tabanou
+1167,Gastón Ramírez
+1168,Gaël Clichy
+1169,George Boyd
+1170,George Friend
+1171,George Honeyman
+1172,Gerhard Tremmel
+1173,Giedrius Arlauskis
+1174,Grant Leadbitter
+1175,Greg Luer
+1176,Greg Olley
+1177,Guillermo Varela
+1178,Gökhan Inler
+1179,Gökhan Töre
+1180,Harrison Reed
+1181,Hiram Boateng
+1182,Ikechi Anya
+1183,Jack Rose
+1184,Jake Hesketh
+1185,James Husband
+1186,James Weir
+1187,James Wilson
+1188,Jan Kirchhoff
+1189,Jason Denayer
+1190,Jeff Reine-Adelaide
+1191,Jeremain Lens
+1192,Jesús Navas
+1193,Joe Ledley
+1194,Joe Williams
+1195,Joel Asoro
+1196,Joel Campbell
+1197,Joel Taylor
+1198,Joey Barton
+1199,John O'Shea
+1200,John Obi Mikel
+1201,John Terry
+1202,Joleon Lescott
+1203,Jonas Olsson
+1204,Jonathan Benteke
+1205,Jonathan Calleri
+1206,Jonathan Williams
+1207,Jordan Rhodes
+1208,Jordi Amat
+1209,Jose Angel Esmoris Tasende
+1210,Josh Clackstone
+1211,Josh Maja
+1212,Josh Robson
+1213,Joshua Harrop
+1214,Joshua Onomah
+1215,Juan Carlos Paredes
+1216,Juan Cuadrado
+1217,Juan Zuñiga
+1218,Julien de Sart
+1219,Kamil Grosicki
+1220,Kevin Stewart
+1221,Kieran O'Hara
+1222,Lamine Koné
+1223,Lee Cattermole
+1224,Lewis Grabban
+1225,Lloyd Isgrove
+1226,Loïc Remy
+1227,Luis Hernández
+1228,Lukas Jutkiewicz
+1229,Luke McGee
+1230,Lynden Gooch
+1231,M'Baye Niang
+1232,Maksymilian Stryjek
+1233,Mamadou Obbi Oularé
+1234,Marc Wilson
+1235,Marcin Wasilewski
+1236,Marco Van Ginkel
+1237,Mario Balotelli
+1238,Mario Suárez
+1239,Markus Henriksen
+1240,Marten de Roon
+1241,Martín Cáceres
+1242,Marvin Emnes
+1243,Mateusz Hewelt
+1244,Mathieu Flamini
+1245,Matt Miazga
+1246,Matthew James
+1247,Matthew Willock
+1248,Matthew Worthington
+1249,Memphis Depay
+1250,Michael Dawson
+1251,Michael Kightly
+1252,Michael Ledger
+1253,Michael Phillips
+1254,Michael Simões Domingues
+1255,Mile Jedinak
+1256,Moses Odubajo
+1257,Mouez Hassen
+1258,Noor Husin
+1259,Ola Aina
+1260,Olufela Olomola
+1261,Omar Elabdellaoui
+1262,Oscar dos Santos Emboaba Junior
+1263,Oviemuno Ejaria
+1264,Pablo Maffeo
+1265,Papy Djilobodji
+1266,Patrick Bamford
+1267,Patrick McNair
+1268,Pau López Sabata
+1269,Pedro Chirivella
+1270,Philipp Wollscheid
+1271,Raphael Spiegel
+1272,Rene Gilmartin
+1273,Rickie Lambert
+1274,Ritchie de Laet
+1275,Ron-Robert Zieler
+1276,Rouwen Hennings
+1277,Rudy Gestede
+1278,Ryan Allsop
+1279,Ryan Mason
+1280,Samuel Shashoua
+1281,Sebastian Larsson
+1282,Serge Gnabry
+1283,Shaun MacDonald
+1284,Shaun Maloney
+1285,Shay Given
+1286,Simone Zaza
+1287,Steve Mandanda
+1288,Steven Pienaar
+1289,Stewart Downing
+1290,Sébastien Pocognoli
+1291,Takuma Asano
+1292,Tendayi Darikwa
+1293,Thibaud Verlinden
+1294,Thomas Robson
+1295,Tokelo Rantie
+1296,Tom Huddlestone
+1297,Tommie Hoban
+1298,Victor Anichebe
+1299,Viktor Fischer
+1300,Vito Mannone
+1301,Víctor Valdés
+1302,Wahbi Khazri
+1303,Will Keane
+1304,Yaya Sanogo
+1305,Zachary Dearnley
+1306,Álvaro Arbeloa
+1307,Álvaro Negredo
