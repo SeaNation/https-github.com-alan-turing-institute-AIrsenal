@@ -138,7 +138,7 @@ def get_past_seasons(num_seasons):
 
 def get_current_players(gameweek=None, season=None, dbsession=None):
     """
-    Use the transactions table to find the team as of specified gameweek,
+    Use the transactions table to find the squad as of specified gameweek,
     then add up the values at that gameweek using the FPL API data.
     If gameweek is None, get team for next gameweek
     """
@@ -167,17 +167,17 @@ def get_current_players(gameweek=None, season=None, dbsession=None):
     return current_players
 
 
-def get_team_value(team, gameweek=NEXT_GAMEWEEK, season=CURRENT_SEASON, use_api=False):
+def get_squad_value(squad, gameweek=NEXT_GAMEWEEK, season=CURRENT_SEASON, use_api=False):
     """
     Use the transactions table to find the team as of specified gameweek,
     then add up the values at that gameweek (using the FPL API if set), plus the
     amount in the bank.
     If gameweek is None, get team for next gameweek
     """
-    total_value = team.budget  # initialise total to amount in the bank
+    total_value = squad.budget  # initialise total to amount in the bank
 
-    for p in team.players:
-        total_value += team.get_sell_price_for_player(
+    for p in squad.players:
+        total_value += squad.get_sell_price_for_player(
             p, use_api=use_api, season=season, gameweek=gameweek
         )
 
