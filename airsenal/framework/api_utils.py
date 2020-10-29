@@ -17,6 +17,7 @@ from airsenal.framework.utils import (
     get_next_fixture_for_player,
     get_player,
     get_recent_scores_for_player,
+    get_player_from_api_id
 )
 
 from airsenal.framework.schema import engine, SessionSquad, SessionBudget, Player
@@ -100,7 +101,9 @@ def combine_player_info(player_id, dbsession=DBSESSION):
         recent_scores.append({"gameweek": k, "score": v})
     info_dict["recent_scores"] = recent_scores
     ## get upcoming fixtures
-    fixtures = get_fixtures_for_player(p, dbsession=dbsession)[:3]
+    gw_range = list(range(NEXT_GAMEWEEK, NEXT_GAMEWEEK+3))
+    fixtures = get_fixtures_for_player(p, season=CURRENT_SEASON, gw_range=gw_range,
+                                       dbsession=dbsession)[:3]
     info_dict["fixtures"] = []
     for f in fixtures:
         home_or_away = "home" if f.home_team == team else "away"
@@ -219,12 +222,10 @@ def validate_session_squad(session_id, dbsession=DBSESSION):
     get the list of player_ids for this session_id, and see if we can
     make a valid 15-player squad out of it
     """
-    budget = get_session_budget(session_id, dbsession)
-
     players = get_session_players(session_id, dbsession)
     if len(players) != 15:
         return False
-    t = Squad(budget)
+    t = Squad()
     for p in players:
         added_ok = t.add_player(p["id"], dbsession=dbsession)
         if not added_ok:
@@ -241,7 +242,10 @@ def fill_session_squad(team_id, session_id, dbsession=DBSESSION):
     reset_session_squad(session_id, dbsession)
     # now query the API
     players = fetcher.get_fpl_team_data(get_last_finished_gameweek(), team_id)["picks"]
-    player_ids = [p["element"] for p in players]
+    player_api_ids = [p["element"] for p in players]
+    # get the player_id from the database corresponding to each player API ID
+    player_ids = [get_player_from_api_id(pid_api, dbsession=dbsession).player_id \
+                  for pid_api in player_api_ids]
     for pid in player_ids:
         add_session_player(pid, session_id, dbsession)
     team_history = fetcher.get_fpl_team_history_data()["current"]
@@ -254,7 +258,7 @@ def fill_session_squad(team_id, session_id, dbsession=DBSESSION):
 
 
 def get_session_prediction(
-    player_id, session_id, gw=None, pred_tag=None, dbsession=DBSESSION
+    player_id, gw=None, pred_tag=None, dbsession=DBSESSION
 ):
     """
     Query the fixture and predictedscore tables for a specified player
@@ -267,7 +271,7 @@ def get_session_prediction(
         "predicted_score": get_predicted_points_for_player(
             player_id, pred_tag, CURRENT_SEASON, dbsession
         )[gw],
-        "fixture": get_next_fixture_for_player(player_id, CURRENT_SEASON, dbsession),
+        "fixture": get_next_fixture_for_player(player_id, season=CURRENT_SEASON, dbsession=dbsession),
     }
     return return_dict
 
@@ -284,7 +288,7 @@ def get_session_predictions(session_id, dbsession=DBSESSION):
     for pid in pids:
 
         pred_scores[pid] = get_session_prediction(
-            pid, session_id, gw, pred_tag, dbsession
+            pid, gw, pred_tag, dbsession
         )
     return pred_scores
 
@@ -299,17 +303,16 @@ def best_transfer_suggestions(n_transfer, session_id, dbsession=DBSESSION):
     if not validate_session_squad(session_id, dbsession):
         raise RuntimeError("Cannot suggest transfer without complete squad")
 
-    budget = get_session_budget(session_id, dbsession)
     players = [p["id"] for p in get_session_players(session_id, dbsession)]
-    t = Squad(budget)
+    t = Squad()
     for p in players:
-        added_ok = t.add_player(p)
+        added_ok = t.add_player(p, dbsession=dbsession)
         if not added_ok:
             raise RuntimeError("Cannot add player {}".format(p))
-    pred_tag = get_latest_prediction_tag()
+    pred_tag = get_latest_prediction_tag(dbsession=dbsession)
     gw = NEXT_GAMEWEEK
     if n_transfer == 1:
-        new_squad, pid_out, pid_in = make_optimum_transfer(t, pred_tag)
+        new_squad, pid_out, pid_in = make_optimum_transfer(t, pred_tag, dbsession=dbsession)
     elif n_transfer == 2:
-        new_squad, pid_out, pid_in = make_optimum_double_transfer(t, pred_tag)
+        new_squad, pid_out, pid_in = make_optimum_double_transfer(t, pred_tag, dbsession=dbsession)
     return {"transfers_out": pid_out, "transfers_in": pid_in}
