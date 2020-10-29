@@ -15,7 +15,7 @@ from airsenal.framework.utils import (
     CURRENT_SEASON,
     get_predicted_points,
     fastcopy,
-    get_team_value,
+    get_squad_value,
 )
 
 positions = ["FWD", "MID", "DEF", "GK"]  # front-to-back
@@ -217,6 +217,7 @@ def make_optimum_transfer(
     update_func_and_args=None,
     bench_boost_gw=None,
     triple_captain_gw=None,
+    dbsession=session,
 ):
     """
     If we want to just make one transfer, it's not unfeasible to try all
@@ -235,7 +236,7 @@ def make_optimum_transfer(
     ordered_player_lists = {}
     for pos in ["GK", "DEF", "MID", "FWD"]:
         ordered_player_lists[pos] = get_predicted_points(
-            gameweek=gameweek_range, position=pos, tag=tag
+            gameweek=gameweek_range, position=pos, tag=tag, dbsession=dbsession
         )
     for p_out in squad.players:
         if update_func_and_args:
@@ -245,25 +246,25 @@ def make_optimum_transfer(
 
         new_squad = fastcopy(squad)
         position = p_out.position
-        new_squad.remove_player(p_out.player_id, season=season, gameweek=transfer_gw)
+        new_squad.remove_player(p_out.player_id, season=season, gameweek=transfer_gw, dbsession=dbsession)
         for p_in in ordered_player_lists[position]:
             if p_in[0].player_id == p_out.player_id:
                 continue  # no point in adding the same player back in
             added_ok = new_squad.add_player(
-                p_in[0], season=season, gameweek=transfer_gw
+                p_in[0], season=season, gameweek=transfer_gw, dbsession=dbsession
             )
             if added_ok:
                 break
         total_points = 0.0
         for gw in gameweek_range:
             if gw == bench_boost_gw:
-                total_points += new_squad.get_expected_points(gw, tag, bench_boost=True)
+                total_points += new_squad.get_expected_points(gw, tag, bench_boost=True, dbsession=dbsession)
             elif gw == triple_captain_gw:
                 total_points += new_squad.get_expected_points(
-                    gw, tag, triple_captain=True
+                    gw, tag, triple_captain=True, dbsession=dbsession
                 )
             else:
-                total_points += new_squad.get_expected_points(gw, tag)
+                total_points += new_squad.get_expected_points(gw, tag, dbsession=dbsession)
         if total_points > best_score:
             best_score = total_points
             best_pid_out = p_out.player_id
@@ -278,9 +279,10 @@ def make_optimum_double_transfer(
     gameweek_range=None,
     season=CURRENT_SEASON,
     update_func_and_args=None,
-    verbose=False,
     bench_boost_gw=None,
     triple_captain_gw=None,
+    dbsession=session,
+    verbose=False,
 ):
     """
     If we want to just make two transfers, it's not unfeasible to try all
@@ -297,7 +299,7 @@ def make_optimum_double_transfer(
     ordered_player_lists = {}
     for pos in ["GK", "DEF", "MID", "FWD"]:
         ordered_player_lists[pos] = get_predicted_points(
-            gameweek=gameweek_range, position=pos, tag=tag
+            gameweek=gameweek_range, position=pos, tag=tag, dbsession=dbsession
         )
 
     for i in range(len(squad.players) - 1):
@@ -306,7 +308,7 @@ def make_optimum_double_transfer(
 
         new_squad_remove_1 = fastcopy(squad)
         new_squad_remove_1.remove_player(
-            pout_1.player_id, season=season, gameweek=transfer_gw
+            pout_1.player_id, season=season, gameweek=transfer_gw, dbsession=dbsession
         )
         for j in range(i + 1, len(squad.players)):
             if update_func_and_args:
@@ -319,7 +321,7 @@ def make_optimum_double_transfer(
             pout_2 = squad.players[j]
             new_squad_remove_2 = fastcopy(new_squad_remove_1)
             new_squad_remove_2.remove_player(
-                pout_2.player_id, season=season, gameweek=transfer_gw
+                pout_2.player_id, season=season, gameweek=transfer_gw, dbsession=dbsession
             )
             if verbose:
                 print("Removing players {} {}".format(i, j))
@@ -335,7 +337,7 @@ def make_optimum_double_transfer(
                     continue  ## no point in adding same player back in
                 new_squad_add_1 = fastcopy(new_squad_remove_2)
                 added_1_ok = new_squad_add_1.add_player(
-                    pin_1[0], season=season, gameweek=transfer_gw
+                    pin_1[0], season=season, gameweek=transfer_gw, dbsession=dbsession
                 )
                 if not added_1_ok:
                     continue
@@ -348,7 +350,7 @@ def make_optimum_double_transfer(
                     ):
                         continue  ## no point in adding same player back in
                     added_2_ok = new_squad_add_2.add_player(
-                        pin_2[0], season=season, gameweek=transfer_gw
+                        pin_2[0], season=season, gameweek=transfer_gw, dbsession=dbsession
                     )
                     if added_2_ok:
                         # calculate the score
@@ -356,15 +358,15 @@ def make_optimum_double_transfer(
                         for gw in gameweek_range:
                             if gw == bench_boost_gw:
                                 total_points += new_squad_add_2.get_expected_points(
-                                    gw, tag, bench_boost=True
+                                    gw, tag, bench_boost=True, dbsession=dbsession
                                 )
                             elif gw == triple_captain_gw:
                                 total_points += new_squad_add_2.get_expected_points(
-                                    gw, tag, triple_captain=True
+                                    gw, tag, triple_captain=True, dbsession=dbsession
                                 )
                             else:
                                 total_points += new_squad_add_2.get_expected_points(
-                                    gw, tag
+                                    gw, tag, dbsession=dbsession
                                 )
                         if total_points > best_score:
                             best_score = total_points
@@ -654,7 +656,7 @@ def apply_strategy(
             )
         elif strat[0][gw] == "W":  ## wildcard - a whole new squad!
             rp = [p.player_id for p in new_squad.players]
-            budget = get_team_value(new_squad)
+            budget = get_squad_value(new_squad)
             new_squad = make_new_squad(
                 budget,
                 num_iter,
@@ -672,7 +674,7 @@ def apply_strategy(
             squad_before_free_hit = fastcopy(new_squad)
             ## now make a new squad for this gw, as is done for wildcard
             new_team = [p.player_id for p in new_squad.players]
-            budget = get_team_value(new_team)
+            budget = get_squad_value(new_squad)
             new_squad = make_new_squad(
                 budget,
                 num_iter,
