@@ -5,10 +5,8 @@
 *FPL_LOGIN
 *FPL_PASSWORD
 
-# AIrsenal database files
-airsenal/data/data.db
-airsenal/data/test.db
-airsenal/data/airsopt/
+# compiled stan models
+stan_model/
 
 # other stuff
 .idea/

@@ -10,7 +10,6 @@ brew cask install chromedriver
 pip install bs4
 """
 
-import sys
 import time
 import json
 import re
@@ -169,7 +168,7 @@ def find_num_players(soup):
     Should be a bit of text on the page saying how many players in total.
     """
     for span in soup.find_all("span", attrs={"class": "items ng-binding"}):
-        match = re.search("([\d]+) items total", span.text)
+        match = re.search(r"([\d]+) items total", span.text)
         if match:
             return int(match.groups()[0])
     return 0
@@ -204,7 +203,7 @@ if __name__ == "__main__":
     while len(player_data) < num_total_players:
         if args.mode == "summary":
             player_data_this_page = parse_summary_page(soup)
-            player_data += player_summaries_this_page
+            player_data += player_data_this_page
         else:
             player_data_this_page = get_detail_pages(soup, pages_done)
             player_data = {**player_data, **player_data_this_page}

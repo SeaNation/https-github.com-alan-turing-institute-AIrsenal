@@ -1,5 +1,6 @@
-tqdm==v4.29.1
+tqdm>=v4.29.1
 black
+flake8
 pandas
 sqlalchemy
 requests
@@ -13,3 +14,6 @@ bpl==0.0.4
 flask
 flask_cors
 flask_session
+jupyter
+seaborn
+click>=7.1.2

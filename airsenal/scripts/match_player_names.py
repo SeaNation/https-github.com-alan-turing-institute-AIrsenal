@@ -7,16 +7,12 @@ Write out a dict of the format
 ...
 }
 """
-import os
-import sys
-
 
 import json
-import re
 
 from fuzzywuzzy import fuzz
 
-from ..framework.data_fetcher import FPLDataFetcher
+from airsenal.framework.data_fetcher import FPLDataFetcher
 
 
 def find_best_match(fpl_players, player):
@@ -24,7 +20,7 @@ def find_best_match(fpl_players, player):
     use fuzzy matching to see if we can match
     names
     """
-    best_ratio = 0.
+    best_ratio = 0.0
     best_match = None
     for p in fpl_players:
         if fuzz.partial_ratio(p, player) > best_ratio:
