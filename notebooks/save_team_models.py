@@ -1,7 +1,10 @@
 """
 Save fitted team models with and without FIFA ratings as covariates for matches up
 to each gameweek across all seasons in database.
+
+NOTE: Can take about an hour to run (fits the team model up to 300 times!)
 """
+
 import pickle
 
 from airsenal.framework.utils import get_past_seasons, NEXT_GAMEWEEK, session
@@ -49,16 +52,25 @@ def save_models(season):
     models_nofifa = {}
     for gameweek in gameweeks:
         print(f"GW {gameweek}")
-        models_fifa[gameweek] = get_fitted_team_model(season, gameweek, session)
-        models_nofifa[gameweek] = fit_nofifa(season, gameweek, session)
+        try:
+            models_fifa[gameweek] = get_fitted_team_model(season, gameweek, session)
+        except RuntimeError:
+            # if initialisation failed try again (just once)
+            models_fifa[gameweek] = get_fitted_team_model(season, gameweek, session)
+        try:
+            models_nofifa[gameweek] = fit_nofifa(season, gameweek, session)
+        except RuntimeError:
+            # if initialisation failed try again (just once)
+            models_nofifa[gameweek] = fit_nofifa(season, gameweek, session)
+
     print(f"Done fitting models for {season}")
 
-    fifa_path = f"models_fifa_{season}.pkl"
+    fifa_path = f"data/models_fifa_{season}.pkl"
     with open(fifa_path, "wb") as f:
         pickle.dump(models_fifa, f)
     print("Saved file:", fifa_path)
 
-    nofifa_path = f"models_nofifa_{season}.pkl"
+    nofifa_path = f"data/models_nofifa_{season}.pkl"
     with open(nofifa_path, "wb") as f:
         pickle.dump(models_nofifa, f)
     print("Saved file:", nofifa_path)
